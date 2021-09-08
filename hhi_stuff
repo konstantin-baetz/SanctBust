@@ -1,0 +1,7 @@
+#hhi inspired leverage (as robustness or else)
+df1$bil__tci <- NaN
+df1$mon_tci_i <- NaN
+df1$mon_tci_j <- NaN
+
+df1 <- df1 %>% group_by(year, ccode_i) %>% mutate(mon_tci_i_share = ((Flow_j+Flow_i)/yearly_trade)^2)
+df1 <- df1 %>% group_by(year, ccode_j) %>% mutate(mon_tci_j_share = ((Flow_j+Flow_i)/yearly_trade)^2)
