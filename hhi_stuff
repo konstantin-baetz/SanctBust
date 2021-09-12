@@ -5,3 +5,20 @@ df1$mon_tci_j <- NaN
 
 df1 <- df1 %>% group_by(year, ccode_i) %>% mutate(mon_tci_i_share = ((Flow_j+Flow_i)/yearly_trade)^2)
 df1 <- df1 %>% group_by(year, ccode_j) %>% mutate(mon_tci_j_share = ((Flow_j+Flow_i)/yearly_trade)^2)
+
+
+#hhi has two versions, monadic and dyadic. Each country has a monadic trade concentration level, they interact for a dyadic level. The monadic version is the sum squared of all trade shares. 
+
+#monadic:
+
+#mondaic_trade_share_sq_i <- ((trade_ij)/trade_i)^2
+#monadic_trade_concentration <- group_by(ccode_i) sum(mondaic_trade_share_sq_i)
+
+#code suggestion:
+
+df1$mon_tci_i_share_sq <- ((df1$Flow_j+df1$Flow_i)/yearly_trade_i)^2)
+df1 <- df1 %>% group_by(year, ccode_i) %>% mutate(mon_tci_i = sum(mon_tci_i_share_sq)
+
+#das gleiche für ccode_j
+
+
